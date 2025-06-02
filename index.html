@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Столица Земли – проект объединения усилий для создания будущего.">
+  <meta name="keywords" content="Столица Земли, Auroria, будущее, инициативы, технологии, инновации">
+  <meta name="author" content="Столица Земли">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Столица Земли – Auroria</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Header с навигацией и переключателем темы -->
+  <header>
+    <nav class="container nav-container">
+      <div class="logo">Столица Земли</div>
+      <ul class="nav-links">
+        <li><a href="#hero">Главная</a></li>
+        <li><a href="#initiative-map">Инициативы</a></li>
+        <li><a href="#chat-section">Консультант</a></li>
+        <li><a href="#tabs-section">Личный кабинет</a></li>
+        <li><a href="#authors">Авторы</a></li>
+      </ul>
+      <button id="theme-toggle" title="Переключить тему">🌙</button>
+    </nav>
+  </header>
+
+  <!-- Герой-секция с параллакс-фоном и градиентным оверлеем -->
+  <section id="hero" class="parallax">
+    <div class="hero-overlay"></div>
+    <div class="hero-content container">
+      <h1 class="fade-in">Добро пожаловать в Столицу Земли</h1>
+      <p class="fade-in delay-1">
+        Мы объединяем технологии, искусство и мечты для создания нового мира. Присоединяйтесь к миссии по созданию Auroria – столицы, задающей тренды будущего.
+      </p>
+      <a href="#initiative-map" class="cta-btn fade-in delay-2">Узнать больше</a>
+    </div>
+  </section>
+
+  <!-- Секция: Интерактивная карта инициатив -->
+  <section id="initiative-map" class="animated-section">
+    <div class="container">
+      <h2>Интерактивная карта инициатив</h2>
+      <p class="section-description">
+        Исследуйте проекты, объединяющие людей для построения будущего. Кликните на пины, чтобы узнать подробности.
+      </p>
+      <div id="map-container">
+        <img src="https://source.unsplash.com/1600x900/?futuristic,city,map" alt="Карта инициатив" class="map-bg">
+        <div class="map-overlay">
+          <span class="map-pin" data-initiative="Энергия будущего" 
+                data-description="Проект по разработке возобновляемых источников энергии для устойчивого развития города."
+                style="top:25%; left:35%;">💡</span>
+          <span class="map-pin" data-initiative="Зеленый город" 
+                data-description="Инициатива по озеленению мегаполиса, созданию эко-парков и скверов."
+                style="top:50%; left:55%;">🍃</span>
+          <span class="map-pin" data-initiative="Транспорт будущего" 
+                data-description="Разработка инновационных транспортных систем для быстрого и экологичного перемещения."
+                style="top:70%; left:25%;">🚀</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Модальное окно для показа подробностей инициатив -->
+  <div id="initiative-modal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      <h3 id="modal-title">Название инициативы</h3>
+      <p id="modal-description">Подробное описание инициативы.</p>
+      <img id="modal-image" src="https://source.unsplash.com/featured/?innovation" alt="Инициатива" class="modal-image">
+    </div>
+  </div>
+
+  <!-- Секция: Чат с "Консультантом будущего" -->
+  <section id="chat-section" class="animated-section">
+    <div class="container">
+      <h2>Консультант будущего</h2>
+      <p class="section-description">
+        Задайте вопрос ИИ-консультанту о технологиях, инновациях и перспективах проекта.
+      </p>
+      <div id="chat-container">
+        <div id="chat-messages"></div>
+        <!-- Индикатор набора ответа -->
+        <div id="ai-typing" class="hidden">
+          <span class="typing-indicator">ИИ печатает...</span>
+        </div>
+        <div id="chat-input-area">
+          <input type="text" id="chat-input" placeholder="Введите ваш вопрос...">
+          <button id="chat-send">Отправить</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Секция: AJAX-вкладки (Личный кабинет, Инициатива, Новости, Мероприятия) -->
+  <section id="tabs-section" class="animated-section">
+    <div class="container">
+      <h2>Панель управления</h2>
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="cabinet">Личный кабинет</button>
+        <button class="tab-btn" data-tab="initiative">Инициатива</button>
+        <button class="tab-btn" data-tab="news">Новости</button>
+        <button class="tab-btn" data-tab="events">Мероприятия</button>
+      </div>
+      <div id="tab-content">
+        <div class="tab-panel" id="cabinet">
+          <h3>Добро пожаловать, Искатель будущего!</h3>
+          <p>
+            Здесь отображаются ваши достижения, обновления и новейшие технологии. Развивайтесь вместе с нашим сообществом.
+          </p>
+          <img src="https://source.unsplash.com/800x600/?technology,workspace" alt="Личный кабинет" class="tab-image">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Секция: Авторы -->
+  <section id="authors" class="animated-section">
+    <div class="container">
+      <h2>Наши Авторы</h2>
+      <p class="section-description">
+        Познакомьтесь с командой, воплощающей мечту в будущее. Их опыт, достижения и путь вдохновляют миллионы.
+      </p>
+      <div class="authors-grid">
+        <div class="author-card">
+          <div class="author-img">
+            <img src="https://source.unsplash.com/150x150/?man" alt="Иван Петров">
+          </div>
+          <h3>Иван Петров</h3>
+          <p>
+            Идеолог проекта, объединяющий технологии и креатив. Его видение вдохновляет сотни людей.
+          </p>
+        </div>
+        <div class="author-card">
+          <div class="author-img">
+            <img src="https://source.unsplash.com/150x150/?woman" alt="Мария Смирнова">
+          </div>
+          <h3>Мария Смирнова</h3>
+          <p>
+            Творческий директор, чьи идеи преображают городские пространства в произведения искусства.
+          </p>
+        </div>
+        <div class="author-card">
+          <div class="author-img">
+            <img src="https://source.unsplash.com/150x150/?tech" alt="Дмитрий Соколов">
+          </div>
+          <h3>Дмитрий Соколов</h3>
+          <p>
+            Технический гений, разработавший AI‑решения для цифрового будущего. Его инновации прокладывают путь к прогрессу.
+          </p>
+        </div>
+      </div>
+      <div class="capital-announcement">
+        <h3>Столица мира: <span>Auroria</span></h3>
+        <p>
+          Auroria – символ новой эры, объединяющий людей для создания гармоничного и инновационного будущего.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Столица Земли. Все права защищены. Разработка и дизайн – Визионеры будущего.</p>
+      <p><small>Проект, вдохновлённый достижениями новейших технологий и креативных умов.</small></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
