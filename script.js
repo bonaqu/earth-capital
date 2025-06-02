@@ -1,6 +1,14 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
+  // Preloader скрытие после загрузки страницы
+  window.onload = function() {
+    const preloader = document.getElementById('preloader');
+    preloader.style.opacity = "0";
+    setTimeout(() => {
+      preloader.style.display = "none";
+    }, 500);
+  };
 
-  // Плавный скролл по якорным ссылкам в навигации
+  // Плавный скролл по якорям (навигация)
   const navLinks = document.querySelectorAll('nav ul li a');
   navLinks.forEach(link => {
     link.addEventListener('click', function(e) {
@@ -13,95 +21,142 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Интерактивная карта: обработка наведения на пины
-  const pins = document.querySelectorAll('.map-pin');
-  const tooltip = document.getElementById('map-tooltip');
-
-  pins.forEach(pin => {
-    pin.addEventListener('mouseenter', function(e) {
-      const initiative = this.getAttribute('data-initiative');
-      tooltip.textContent = initiative;
-      // Размещаем подсказку рядом с пином
-      tooltip.style.left = (this.offsetLeft + 20) + 'px';
-      tooltip.style.top = (this.offsetTop - 30) + 'px';
-      tooltip.classList.add('visible');
+  // Intersection Observer для анимации секций
+  const animatedSections = document.querySelectorAll('.animated-section');
+  const observerOptions = { threshold: 0.1 };
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
     });
+  }, observerOptions);
+  animatedSections.forEach(section => {
+    observer.observe(section);
+  });
 
-    pin.addEventListener('mouseleave', function() {
-      tooltip.classList.remove('visible');
+  // Переключение тёмной темы
+  const themeToggle = document.getElementById('theme-toggle');
+  themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    if(document.body.classList.contains('dark-mode')){
+      themeToggle.textContent = "☀️";
+    } else {
+      themeToggle.textContent = "🌙";
+    }
+  });
+
+  // Обработка клика по пинам на карте для открытия модального окна
+  const modal = document.getElementById('initiative-modal');
+  const modalClose = document.querySelector('.modal-close');
+  const modalTitle = document.getElementById('modal-title');
+  const modalDescription = document.getElementById('modal-description');
+  const modalImage = document.getElementById('modal-image');
+
+  const pins = document.querySelectorAll('.map-pin');
+  pins.forEach(pin => {
+    pin.addEventListener('click', () => {
+      const title = pin.getAttribute('data-initiative');
+      const description = pin.getAttribute('data-description');
+      modalTitle.textContent = title;
+      modalDescription.textContent = description;
+      // Загружаем изображение по ключевому слову инициативы
+      modalImage.src = `https://source.unsplash.com/featured/?${encodeURIComponent(title)}`;
+      modal.classList.add('show');
     });
   });
 
-  // AJAX-вкладки: загрузка контента без перезагрузки страницы
+  modalClose.addEventListener('click', () => {
+    modal.classList.remove('show');
+  });
+  window.addEventListener('click', (e) => {
+    if(e.target == modal){
+      modal.classList.remove('show');
+    }
+  });
+
+  // AJAX-вкладки: динамическая загрузка контента
   const tabContent = document.getElementById('tab-content');
   const tabButtons = document.querySelectorAll('.tab-btn');
   const contentData = {
-    'cabinet': 'Добро пожаловать в ваш личный кабинет. Здесь вы можете видеть ваш прогресс, обновления проектов и персональные достижения.',
-    'initiative': 'Здесь представлена новая инициатива: «Энергия будущего». Примите участие и внесите свой вклад в создание нового мира.',
-    'news': 'Последние новости: запуск месяца, обновления в проектах и интервью с лидерами мнений.',
-    'events': 'Ближайшие мероприятия: конференция инноваций, воркшоп по будущим технологиям, вечер творческого общения.'
+    'cabinet': `<h3>Добро пожаловать, Искатель Будущего!</h3>
+                <p>
+                  Здесь отображаются ваши достижения, личный прогресс и персональные обновления проекта.
+                  Узнайте о новейших технологиях, инициативах и мероприятиях, которые помогут вам расти вместе с нашим сообществом.
+                </p>
+                <img src="https://source.unsplash.com/featured/?technology,progress" alt="Личный кабинет" class="tab-image">`,
+    'initiative': `<h3>Инновационные Инициативы</h3>
+                <p>
+                  Мы готовы изменить мир! Узнайте подробнее об актуальных проектах, где технологии встречаются с вдохновением.
+                </p>
+                <img src="https://source.unsplash.com/featured/?innovation" alt="Инициатива" class="tab-image">`,
+    'news': `<h3>Последние Новости</h3>
+                <p>
+                  Будьте в курсе обновлений, нововведений и событий, влияющих на будущее проекта.
+                </p>
+                <img src="https://source.unsplash.com/featured/?news,technology" alt="Новости" class="tab-image">`,
+    'events': `<h3>Будущие Мероприятия</h3>
+                <p>
+                  Подключайтесь к предстоящим мероприятиям, семинарам и конференциям, посвящённым технологиям, искусству и инновациям.
+                </p>
+                <img src="https://source.unsplash.com/featured/?conference,event" alt="Мероприятия" class="tab-image">`
   };
 
   tabButtons.forEach(button => {
     button.addEventListener('click', function() {
-      // Снимаем активный класс со всех кнопок и добавляем текущей
       tabButtons.forEach(btn => btn.classList.remove('active'));
       this.classList.add('active');
 
       const tabId = this.getAttribute('data-tab');
-      tabContent.innerHTML = '<p>Загрузка...</p>';
-      // Симуляция AJAX-запроса с задержкой
+      tabContent.innerHTML = `<p>Загрузка...</p>`;
       setTimeout(() => {
-        tabContent.innerHTML = '<div class="tab-panel">' + contentData[tabId] + '</div>';
+        tabContent.innerHTML = contentData[tabId];
       }, 500);
     });
   });
 
-  // Чат с "Консультантом будущего"
+  // Реализация чата с ИИ-консультантом
   const chatInput = document.getElementById('chat-input');
   const chatSend = document.getElementById('chat-send');
   const chatMessages = document.getElementById('chat-messages');
 
   chatSend.addEventListener('click', sendMessage);
   chatInput.addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') {
+    if(e.key === 'Enter'){
       sendMessage();
     }
   });
 
   function sendMessage() {
     const messageText = chatInput.value.trim();
-    if (messageText === '') return;
-    addMessage('user', messageText);
+    if(messageText === '') return;
+    appendMessage('user', messageText);
     chatInput.value = '';
-    // Симуляция ответа ИИ с задержкой
     setTimeout(() => {
       const aiResponse = generateAIResponse(messageText);
-      addMessage('ai', aiResponse);
+      appendMessage('ai', aiResponse);
       chatMessages.scrollTop = chatMessages.scrollHeight;
     }, 1000);
   }
 
-  function addMessage(sender, text) {
-    const messageDiv = document.createElement('div');
-    messageDiv.classList.add('message', sender);
-    const textSpan = document.createElement('span');
-    textSpan.classList.add('text');
-    textSpan.textContent = text;
-    messageDiv.appendChild(textSpan);
-    chatMessages.appendChild(messageDiv);
+  function appendMessage(sender, text) {
+    const msgDiv = document.createElement('div');
+    msgDiv.classList.add('message', sender);
+    const msgText = document.createElement('span');
+    msgText.classList.add('text');
+    msgText.textContent = text;
+    msgDiv.appendChild(msgText);
+    chatMessages.appendChild(msgDiv);
   }
 
-  function generateAIResponse(userMessage) {
-    // Простейшая генерация ответа – рандомный выбор из массива вариантов
+  function generateAIResponse(userMsg) {
     const responses = [
-      'Ваш вопрос очень интересен. Давайте подумаем над этим...',
-      'Спасибо за внимание! Скоро я дам вам подробный ответ.',
-      'Это действительно важный вопрос для будущего. Подумайте об этом в свете новых технологий.',
-      'Я понимаю ваш запрос. Наш проект направлен на объединение усилий для создания лучшего мира.'
+      'Спасибо за ваш запрос. Наши системы анализируют данные, чтобы дать вам лучший совет.',
+      'Ваш вопрос затрагивает важные тенденции. Подождите немного, и я представлю прогноз.',
+      'Интересный вопрос! Возможно, стоит обратить внимание на новые инициативы и технологические тренды.',
+      'Этот вопрос поднимает бесконечные возможности для будущего. Я работаю над ответом!'
     ];
-    const randomIndex = Math.floor(Math.random() * responses.length);
-    return responses[randomIndex];
+    return responses[Math.floor(Math.random() * responses.length)];
   }
-
 });

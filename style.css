@@ -1,337 +1,369 @@
-/* Сброс стилей и базовая настройка */
+/* Универсальный сброс и базовая настройка */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Roboto', sans-serif;
   line-height: 1.6;
-  color: #333;
   background-color: #fff;
+  color: #333;
+}
+
+/* Preloader */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.spinner {
+  border: 8px solid #eee;
+  border-top: 8px solid #007BFF;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Контейнер */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px 0;
 }
 
 /* Header и навигация */
 header {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
   position: sticky;
   top: 0;
-  width: 100%;
   z-index: 1000;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
-
 nav {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   padding: 10px 20px;
 }
-
 nav .logo {
-  font-size: 1.5em;
+  font-size: 1.8rem;
   font-weight: bold;
+  color: #007BFF;
 }
-
 nav ul {
   display: flex;
   list-style: none;
 }
-
 nav ul li {
   margin-left: 20px;
 }
-
 nav ul li a {
   text-decoration: none;
   color: #333;
-  transition: color 0.3s;
+  font-weight: 500;
+  transition: color 0.3s ease;
 }
-
 nav ul li a:hover {
   color: #007BFF;
+}
+#theme-toggle {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
 /* Герой-секция с параллакс-фоном */
 #hero {
-  height: 100vh;
-  background-image: url('https://via.placeholder.com/1920x1080'); /* Можно заменить на изображение будущего города */
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  height: 100vh;
+  background: url('https://source.unsplash.com/featured/?future-city') no-repeat center center/cover;
 }
-
-#hero::before {
-  content: "";
+.hero-overlay {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0,0,0,0.5);
 }
-
 .hero-content {
   position: relative;
+  z-index: 1;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
   color: #fff;
-  max-width: 800px;
-  padding: 20px;
+  padding: 0 20px;
 }
-
+/* Анимация появления */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+.delay-1 {
+  animation-delay: 0.5s;
+}
+.delay-2 {
+  animation-delay: 1s;
+}
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
 .cta-btn {
   display: inline-block;
   margin-top: 20px;
-  padding: 10px 20px;
+  padding: 12px 28px;
   background: #007BFF;
   color: #fff;
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 25px;
+  font-weight: 500;
   transition: background 0.3s;
 }
-
 .cta-btn:hover {
   background: #0056b3;
 }
 
-/* Интерактивная карта инициатив */
-#initiative-map {
-  padding: 60px 20px;
-  background: #f7f7f7;
-}
-
-#initiative-map h2 {
+/* Заголовки и описания секций */
+section h2 {
   text-align: center;
   margin-bottom: 20px;
+  font-size: 2rem;
+  color: #007BFF;
+}
+.section-description {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 1.1rem;
+  color: #555;
 }
 
-#map-container {
+/* Раздел с картой инициатив */
+#initiative-map #map-container {
   position: relative;
-  width: 100%;
-  max-width: 1000px;
-  margin: auto;
-  height: 500px;
-  background: url('https://via.placeholder.com/1000x500') no-repeat center/cover;
-  border-radius: 8px;
+  border-radius: 10px;
   overflow: hidden;
 }
-
-.map-overlay {
-  position: relative;
-  height: 100%;
+.map-bg {
+  width: 100%;
+  display: block;
 }
-
-/* Пины на карте */
+.map-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+/* Стили для пинов */
 .map-pin {
   position: absolute;
-  font-size: 24px;
-  color: red;
   cursor: pointer;
-  transition: transform 0.3s;
+  font-size: 2rem;
+  transition: transform 0.3s ease;
 }
-
 .map-pin:hover {
-  transform: scale(1.5);
+  transform: scale(1.3);
 }
 
-/* Подсказка для пинов */
-#map-tooltip {
-  position: absolute;
-  background: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 4px;
-  pointer-events: none;
-  font-size: 14px;
+/* Модальное окно */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  visibility: hidden;
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity 0.3s ease;
+  z-index: 1500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
-#map-tooltip.visible {
+.modal.show {
+  visibility: visible;
   opacity: 1;
 }
-
-/* Чат-секция для консультанта */
-#chat-section {
-  padding: 60px 20px;
+.modal-content {
   background: #fff;
+  max-width: 600px;
+  width: 90%;
+  padding: 30px;
+  border-radius: 10px;
+  position: relative;
+  animation: slideDown 0.5s ease;
 }
-
-#chat-section h2 {
-  text-align: center;
-  margin-bottom: 20px;
+@keyframes slideDown {
+  from { transform: translateY(-30px); }
+  to { transform: translateY(0); }
 }
-
-#chat-container {
-  max-width: 800px;
-  margin: auto;
-  border: 1px solid #ddd;
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #333;
+}
+.modal-image {
+  width: 100%;
+  margin-top: 15px;
   border-radius: 8px;
-  padding: 20px;
-  background: #fafafa;
 }
 
+/* Чат */
+#chat-section #chat-container {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+}
 #chat-messages {
   height: 300px;
   overflow-y: auto;
-  border: 1px solid #eee;
+  border: 1px solid #ccc;
   padding: 10px;
-  margin-bottom: 10px;
+  background: #fff;
+  border-radius: 5px;
+  margin-bottom: 15px;
 }
-
 #chat-input-area {
   display: flex;
 }
-
 #chat-input {
   flex: 1;
-  padding: 10px;
+  padding: 12px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 5px;
 }
-
 #chat-send {
-  padding: 10px 20px;
+  padding: 12px 20px;
   border: none;
   background: #007BFF;
   color: #fff;
-  cursor: pointer;
-  border-radius: 4px;
+  border-radius: 5px;
   margin-left: 10px;
-  transition: background 0.3s;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
-
 #chat-send:hover {
   background: #0056b3;
 }
-
 .message {
-  margin: 5px 0;
+  margin: 8px 0;
+  display: flex;
 }
-
 .message.user {
-  text-align: right;
+  justify-content: flex-end;
 }
-
 .message.ai {
-  text-align: left;
+  justify-content: flex-start;
 }
-
 .message .text {
-  display: inline-block;
-  padding: 10px;
-  border-radius: 8px;
   max-width: 70%;
+  padding: 12px;
+  border-radius: 10px;
+  background: #e9e9eb;
 }
-
 .message.user .text {
-  background: #dcf8c6;
-}
-
-.message.ai .text {
-  background: #f1f0f0;
+  background: #d1ffd6;
 }
 
 /* AJAX-вкладки */
-#tabs-section {
-  padding: 60px 20px;
-  background: #f7f7f7;
-}
-
-#tabs-section h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
 .tabs {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
-
 .tab-btn {
-  padding: 10px 20px;
+  background: #eee;
   border: none;
-  background: #ddd;
+  padding: 12px 24px;
   margin: 0 5px;
-  border-radius: 5px;
+  border-radius: 25px;
   cursor: pointer;
   transition: background 0.3s;
+  font-weight: 500;
 }
-
-.tab-btn.active,
 .tab-btn:hover {
+  background: #ccc;
+}
+.tab-btn.active {
   background: #007BFF;
   color: #fff;
 }
-
 #tab-content {
-  max-width: 800px;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
   background: #fff;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  padding: 30px;
+}
+.tab-panel {
+  text-align: center;
+}
+.tab-image {
+  margin-top: 20px;
+  max-width: 100%;
+  border-radius: 10px;
 }
 
 /* Авторы */
-#authors {
-  padding: 60px 20px;
-  background: #fff;
-}
-
-#authors h2 {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
 .authors-grid {
   display: flex;
   flex-wrap: wrap;
+  gap: 30px;
   justify-content: center;
-  gap: 20px;
 }
-
 .author-card {
-  background: #f7f7f7;
-  border: 1px solid #eee;
-  border-radius: 8px;
+  background: #f4f4f4;
   padding: 20px;
+  border-radius: 10px;
   width: calc(33% - 40px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .author-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
-
 .author-img {
   text-align: center;
   margin-bottom: 15px;
 }
-
 .author-img img {
   border-radius: 50%;
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
 }
-
 .capital-announcement {
   text-align: center;
   margin-top: 40px;
   padding: 20px;
-  background: #e9ecef;
-  border-radius: 8px;
+  background: #e3f2fd;
+  border-radius: 10px;
 }
-
 .capital-announcement span {
   font-weight: bold;
-  font-size: 1.2em;
+  font-size: 1.5rem;
   color: #007BFF;
 }
 
@@ -341,82 +373,75 @@ footer {
   color: #fff;
   text-align: center;
   padding: 20px;
+  font-size: 0.9rem;
 }
 
-/* Mobile-first адаптация */
+/* Анимация для секций */
+.animated-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease-out;
+}
+.animated-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile responsiveness */
 @media (max-width: 768px) {
   nav ul {
     flex-direction: column;
+    margin-top: 10px;
   }
-
   nav ul li {
     margin: 10px 0;
   }
-
   .authors-grid {
     flex-direction: column;
     align-items: center;
   }
-
   .author-card {
-    width: 80%;
+    width: 90%;
   }
-
   #chat-messages {
     height: 200px;
   }
 }
 
-/* Поддержка тёмной темы */
+/* Dark mode (если используется prefers-color-scheme) */
 @media (prefers-color-scheme: dark) {
   body {
-    background-color: #222;
-    color: #ddd;
+    background-color: #121212;
+    color: #ccc;
   }
-  
   header {
-    background: rgba(34, 34, 34, 0.9);
+    background: rgba(18, 18, 18, 0.95);
   }
-  
   nav ul li a {
-    color: #ddd;
+    color: #ccc;
   }
-  
   nav ul li a:hover {
     color: #66b3ff;
   }
-  
-  #hero::before {
+  #hero .hero-overlay {
     background: rgba(0, 0, 0, 0.6);
   }
-  
-  #initiative-map {
-    background: #333;
-  }
-  
-  #tabs-section {
-    background: #333;
-  }
-  
-  #tab-content {
-    background: #444;
-    color: #ddd;
-  }
-  
-  #chat-container {
-    background: #444;
-    border-color: #555;
-  }
-  
-  .author-card {
+  #chat-section #chat-container {
     background: #333;
     border-color: #444;
   }
-  
-  .capital-announcement {
-    background: #444;
+  #tab-content {
+    background: #2a2a2a;
+    color: #ccc;
+    border-color: #555;
   }
-  
+  .author-card {
+    background: #2a2a2a;
+    border-color: #444;
+  }
+  .capital-announcement {
+    background: #333;
+  }
   footer {
     background: #111;
   }
