@@ -3,190 +3,138 @@
 <head>
   <meta charset="UTF-8">
   <meta name="description" content="Столица Земли – проект объединения усилий для создания будущего.">
-  <meta name="keywords" content="Столица Земли, Auroria, будущее, инициативы, технологии, инновации">
-  <meta name="author" content="Столица Земли">
+  <meta name="keywords" content="Столица Земли, Auroria, будущее, инициативы, технологии, инновации, Capital of Earth, future, initiatives, technology, innovation">
+  <meta name="author" content="Команда Столицы Земли">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Столица Земли – Auroria</title>
-  <link rel="stylesheet" href="style.css">
-  <!-- Google Fonts -->
+  <title data-ru="Столица Земли – Auroria" data-en="Capital of Earth – Auroria">Столица Земли – Auroria</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
-  <!-- Preloader -->
-  <div id="preloader">
-    <div class="spinner"></div>
+<div id="preloader">
+  <div class="spinner"></div>
+</div>
+
+<header>
+  <nav class="container nav-container">
+    <div class="logo" data-ru="Столица Земли" data-en="Capital of Earth">Столица Земли</div>
+    <ul class="nav-links">
+      <li><a href="#hero" data-ru="Главная" data-en="Home">Главная</a></li>
+      <li><a href="#initiative-scheme" data-ru="Инициативы" data-en="Initiatives">Инициативы</a></li>
+      <li><a href="#tabs-section" data-ru="Информация" data-en="Information">Информация</a></li>
+      <li><a href="#chat-section" data-ru="Консультант" data-en="Consultant">Консультант</a></li>
+      <li><a href="#authors" data-ru="Авторы" data-en="Authors">Авторы</a></li>
+    </ul>
+    <div class="lang-switcher">
+      <button id="lang-ru" class="active">RU</button>
+      <button id="lang-en">EN</button>
+    </div>
+    <button id="theme-toggle" title="Переключить тему">🌙</button>
+  </nav>
+</header>
+
+<section id="hero" class="parallax">
+  <div class="hero-overlay"></div>
+  <div class="hero-content container">
+    <h1 class="fade-in" data-ru="Добро пожаловать в Столицу Земли" data-en="Welcome to the Capital of Earth">Добро пожаловать в Столицу Земли</h1>
+    <p class="fade-in delay-1" data-ru="Мы объединяем технологии, искусство и мечты для создания нового мира. Присоединяйтесь к миссии по созданию Auroria – столицы, задающей тренды будущего." data-en="We unite technology, art, and dreams to create a new world. Join the mission to build Auroria – the capital setting future trends.">
+      Мы объединяем технологии, искусство и мечты для создания нового мира. Присоединяйтесь к миссии по созданию Auroria – столицы, задающей тренды будущего.
+    </p>
+    <a href="#initiative-scheme" class="cta-btn fade-in delay-2" data-ru="Узнать больше" data-en="Learn More">Узнать больше</a>
   </div>
+</section>
 
-  <!-- Header с навигацией и переключателем темы -->
-  <header>
-    <nav class="container nav-container">
-      <div class="logo">Столица Земли</div>
-      <ul class="nav-links">
-        <li><a href="#hero">Главная</a></li>
-        <li><a href="#initiative-map">Инициативы</a></li>
-        <li><a href="#chat-section">Консультант</a></li>
-        <li><a href="#tabs-section">Личный кабинет</a></li>
-        <li><a href="#authors">Авторы</a></li>
-      </ul>
-      <button id="theme-toggle" title="Переключить тему">🌙</button>
-    </nav>
-  </header>
-
-  <!-- Герой-секция с параллакс-фоном и градиентным оверлеем -->
-  <section id="hero" class="parallax">
-    <div class="hero-overlay"></div>
-    <div class="hero-content container">
-      <h1 class="fade-in">Добро пожаловать в Столицу Земли</h1>
-      <p class="fade-in delay-1">
-        Мы объединяем технологии, искусство и мечты для создания нового мира. Присоединяйтесь к миссии по созданию Auroria – столицы, задающей тренды будущего.
-      </p>
-      <a href="#initiative-map" class="cta-btn fade-in delay-2">Узнать больше</a>
-    </div>
-  </section>
-
-  <!-- Секция: Интерактивная карта инициатив -->
-  <section id="initiative-map" class="animated-section">
-    <div class="container">
-      <h2>Интерактивная карта инициатив</h2>
-      <p class="section-description">
-        Исследуйте проекты, объединяющие людей для построения будущего. Кликните на пины, чтобы узнать подробности.
-      </p>
-      <div id="map-container">
-        <!-- Статическая картинка карты -->
-        <img src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" 
-             onerror="this.onerror=null; this.src='https://via.placeholder.com/1600x900?text=Map+Image+not+found';" 
-             alt="Карта инициатив" class="map-bg">
-        <div class="map-overlay">
-          <span class="map-pin" data-initiative="Энергия будущего" 
-                data-description="Проект по разработке возобновляемых источников энергии для устойчивого развития города."
-                style="top:25%; left:35%;">💡</span>
-          <span class="map-pin" data-initiative="Зеленый город" 
-                data-description="Инициатива по озеленению мегаполиса, созданию эко-парков и скверов."
-                style="top:50%; left:55%;">🍃</span>
-          <span class="map-pin" data-initiative="Транспорт будущего" 
-                data-description="Разработка инновационных транспортных систем для быстрого и экологичного перемещения."
-                style="top:70%; left:25%;">🚀</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Модальное окно для показа подробностей инициатив -->
-  <div id="initiative-modal" class="modal">
-    <div class="modal-content">
-      <span class="modal-close">&times;</span>
-      <h3 id="modal-title">Название инициативы</h3>
-      <p id="modal-description">Подробное описание инициативы.</p>
-      <img id="modal-image" src="https://images.unsplash.com/photo-1581091012184-94a0bb97a5b9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80"
-           onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Modal+Image+not+found';" 
-           alt="Инициатива" class="modal-image">
+<section id="initiative-scheme" class="animated-section">
+  <div class="container">
+    <h2 data-ru="Подробная Схема Инициатив" data-en="Detailed Initiative Scheme">Подробная Схема Инициатив</h2>
+    <p class="section-description" data-ru="Ознакомьтесь с ключевыми направлениями развития Auroria. Каждая инициатива направлена на создание устойчивого и процветающего будущего для всех." data-en="Explore the key development areas of Auroria. Each initiative aims to create a sustainable and prosperous future for all.">
+      Ознакомьтесь с ключевыми направлениями развития Auroria. Каждая инициатива направлена на создание устойчивого и процветающего будущего для всех.
+    </p>
+    <div class="initiative-main-grid">
     </div>
   </div>
+</section>
 
-  <!-- Секция: Чат с "Консультантом будущего" -->
-  <section id="chat-section" class="animated-section">
-    <div class="container">
-      <h2>Консультант будущего</h2>
-      <p class="section-description">
-        Задайте вопрос ИИ-консультанту о технологиях, инновациях и перспективах проекта.
-      </p>
-      <div id="chat-container">
-        <div id="chat-messages"></div>
-        <!-- Индикатор набора ответа -->
-        <div id="ai-typing" class="hidden">
-          <span class="typing-indicator">ИИ печатает...</span>
+<section id="tabs-section" class="animated-section">
+  <div class="container">
+    <h2 data-ru="Информационный Центр" data-en="Information Hub">Информационный Центр</h2>
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="news-tab" data-ru="Новости" data-en="News">Новости</button>
+      <button class="tab-btn" data-tab="initiatives-detailed-tab" data-ru="Детали Инициатив" data-en="Initiative Details">Детали Инициатив</button>
+      <button class="tab-btn" data-tab="events-tab" data-ru="Мероприятия" data-en="Events">Мероприятия</button>
+    </div>
+    <div id="tab-content">
+      <div class="tab-panel active" id="news-tab">
+        <h3 data-ru="Последние Новости Auroria" data-en="Latest Auroria News">Последние Новости Auroria</h3>
+        <div id="news-list" class="content-list">
         </div>
-        <div id="chat-input-area">
-          <input type="text" id="chat-input" placeholder="Введите ваш вопрос...">
-          <button id="chat-send">Отправить</button>
+      </div>
+      <div class="tab-panel" id="initiatives-detailed-tab">
+        <h3 data-ru="Глубокое Погружение в Инициативы" data-en="Deep Dive into Initiatives">Глубокое Погружение в Инициативы</h3>
+        <div id="initiatives-detailed-list" class="content-list">
+        </div>
+      </div>
+      <div class="tab-panel" id="events-tab">
+        <h3 data-ru="Предстоящие Мероприятия" data-en="Upcoming Events">Предстоящие Мероприятия</h3>
+        <div id="events-list" class="content-list">
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Секция: AJAX-вкладки (Личный кабинет, Инициатива, Новости, Мероприятия) -->
-  <section id="tabs-section" class="animated-section">
-    <div class="container">
-      <h2>Панель управления</h2>
-      <div class="tabs">
-        <button class="tab-btn active" data-tab="cabinet">Личный кабинет</button>
-        <button class="tab-btn" data-tab="initiative">Инициатива</button>
-        <button class="tab-btn" data-tab="news">Новости</button>
-        <button class="tab-btn" data-tab="events">Мероприятия</button>
+<section id="chat-section" class="animated-section">
+  <div class="container">
+    <h2 data-ru="Консультант Будущего" data-en="Future Consultant">Консультант Будущего</h2>
+    <p class="section-description" data-ru="Задайте вопрос нашему ИИ-консультанту об Auroria, ее технологиях, инициативах и перспективах. Он готов поделиться знаниями!" data-en="Ask our AI consultant about Auroria, its technologies, initiatives, and prospects. It's ready to share its knowledge!">
+      Задайте вопрос нашему ИИ-консультанту об Auroria, ее технологиях, инициативах и перспективах. Он готов поделиться знаниями!
+    </p>
+    <div id="chat-container">
+      <div id="chat-messages"></div>
+      <div id="ai-typing" class="hidden">
+        <span class="typing-indicator" data-ru="ИИ печатает..." data-en="AI is typing...">ИИ печатает...</span>
       </div>
-      <div id="tab-content">
-        <div class="tab-panel" id="cabinet">
-          <h3>Добро пожаловать, Искатель будущего!</h3>
-          <p>
-            Здесь отображаются ваши достижения, обновления и новейшие технологии. Развивайтесь вместе с нашим сообществом.
-          </p>
-          <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
-               onerror="this.onerror=null; this.src='https://via.placeholder.com/800x600?text=Image+not+found';" 
-               alt="Личный кабинет" class="tab-image">
-        </div>
+      <div id="chat-input-area">
+        <input type="text" id="chat-input" data-ru-placeholder="Введите ваш вопрос..." data-en-placeholder="Enter your question..." placeholder="Введите ваш вопрос...">
+        <button id="chat-send" data-ru="Отправить" data-en="Send">Отправить</button>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Секция: Авторы -->
-  <section id="authors" class="animated-section">
-    <div class="container">
-      <h2>Наши Авторы</h2>
-      <p class="section-description">
-        Познакомьтесь с командой, воплощающей мечту в будущее. Их опыт, достижения и путь вдохновляют миллионы.
-      </p>
-      <div class="authors-grid">
-        <div class="author-card">
-          <div class="author-img">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80" 
-                 onerror="this.onerror=null; this.src='https://via.placeholder.com/150?text=Author+Image+not+found';" 
-                 alt="Иван Петров">
-          </div>
-          <h3>Иван Петров</h3>
-          <p>
-            Идеолог проекта, объединяющий технологии и креатив. Его видение вдохновляет сотни людей.
-          </p>
-        </div>
-        <div class="author-card">
-          <div class="author-img">
-            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80"
-                 onerror="this.onerror=null; this.src='https://via.placeholder.com/150?text=Author+Image+not+found';" 
-                 alt="Мария Смирнова">
-          </div>
-          <h3>Мария Смирнова</h3>
-          <p>
-            Творческий директор, чьи идеи преображают городские пространства в произведения искусства.
-          </p>
-        </div>
-        <div class="author-card">
-          <div class="author-img">
-            <img src="https://images.unsplash.com/photo-1531497865141-4d1972d49f76?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80" 
-                 onerror="this.onerror=null; this.src='https://via.placeholder.com/150?text=Author+Image+not+found';" 
-                 alt="Дмитрий Соколов">
-          </div>
-          <h3>Дмитрий Соколов</h3>
-          <p>
-            Технический гений, разработавший AI‑решения для цифрового будущего. Его инновации прокладывают путь к прогрессу.
-          </p>
-        </div>
-      </div>
-      <div class="capital-announcement">
-        <h3>Столица мира: <span>Auroria</span></h3>
-        <p>
-          Auroria – символ новой эры, объединяющий людей для создания гармоничного и инновационного будущего.
-        </p>
+<section id="authors" class="animated-section">
+  <div class="container">
+    <h2 data-ru="Архитекторы Будущего" data-en="Architects of the Future">Архитекторы Будущего</h2>
+    <p class="section-description" data-ru="Познакомьтесь с международной командой визионеров, воплощающих мечту об Auroria в реальность. Их разнообразный опыт и общая страсть к инновациям являются движущей силой проекта." data-en="Meet the international team of visionaries bringing the dream of Auroria to life. Their diverse backgrounds and shared passion for innovation are the driving force behind the project.">
+      Познакомьтесь с международной командой визионеров, воплощающих мечту об Auroria в реальность. Их разнообразный опыт и общая страсть к инновациям являются движущей силой проекта.
+    </p>
+    <div class="authors-grid">
+    </div>
+    <div class="capital-announcement">
+      <h3 data-ru="Столица Мира: <span class='auroria-title'>Auroria</span>" data-en="The World Capital: <span class='auroria-title'>Auroria</span>">Столица Мира: <span class="auroria-title">Auroria</span></h3>
+      <div id="auroria-description">
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 Столица Земли. Все права защищены. Разработка и дизайн – Визионеры будущего.</p>
-      <p><small>Проект, вдохновлённый новейшими технологиями и креативными умами.</small></p>
-    </div>
-  </footer>
+<footer>
+  <div class="container">
+    <p data-ru="&copy; 2025 Столица Земли. Все права защищены. Разработка и дизайн – Визионеры Будущего." data-en="&copy; 2025 Capital of Earth. All rights reserved. Development and design by the Visionaries of the Future.">&copy; 2025 Столица Земли. Все права защищены. Разработка и дизайн – Визионеры Будущего.</p>
+    <p><small data-ru="Проект, вдохновлённый новейшими технологиями и объединенными усилиями человечества." data-en="A project inspired by cutting-edge technologies and the united efforts of humanity.">Проект, вдохновлённый новейшими технологиями и объединенными усилиями человечества.</small></p>
+  </div>
+</footer>
 
-  <script src="script.js"></script>
+<div id="initiative-modal" class="modal">
+  <div class="modal-content">
+    <span class="modal-close">&times;</span>
+    <h3 id="modal-title-text"></h3>
+    <img id="modal-image" src="https://placehold.co/600x400/3498db/ffffff?text=Auroria+Initiative" alt="Initiative Image" class="modal-image">
+    <div id="modal-description-text" class="modal-description-scrollable"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
