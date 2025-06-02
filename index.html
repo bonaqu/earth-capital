@@ -1,80 +1,126 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Столица Земли</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <script defer src="script.js"></script>
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Столица Земли – Auroria</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Header с навигацией -->
   <header>
-    <h1>СТОЛИЦА ЗЕМЛИ</h1>
-    <p>Глобальный проект будущего</p>
-    <button onclick="scrollToSection('mission')">Узнать больше</button>
+    <nav>
+      <div class="logo">Столица Земли</div>
+      <ul>
+        <li><a href="#hero">Главная</a></li>
+        <li><a href="#initiative-map">Инициативы</a></li>
+        <li><a href="#chat-section">Консультант</a></li>
+        <li><a href="#tabs-section">Личный кабинет</a></li>
+        <li><a href="#authors">Авторы</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main>
-    <section id="mission">
-      <h2>Наша миссия</h2>
-      <p>Создать первую столицу планеты — город, где технологии, культура и природа живут в гармонии. Это символ будущего человечества.</p>
-    </section>
+  <!-- Герой-секция с параллакс-фоном (будущий город) -->
+  <section id="hero">
+    <div class="hero-content">
+      <h1>Добро пожаловать в Столицу Земли</h1>
+      <p>Мы превращаем будущее в реальность. Присоединяйтесь к нам в миссии по созданию Auroria – столицы мира.</p>
+      <a href="#initiative-map" class="cta-btn">Узнать больше</a>
+    </div>
+  </section>
 
-    <section id="map">
-      <h2>Карта инициатив</h2>
-      <div id="initiative-map"></div>
-    </section>
-
-    <section id="consultant">
-      <h2>Консультант будущего</h2>
-      <div class="chatbox">
-        <div id="chat-log">
-          <p><strong>Консультант:</strong> Здравствуйте! Я здесь, чтобы рассказать вам о проекте "Столица Земли".</p>
-        </div>
-        <input type="text" id="chat-input" placeholder="Введите вопрос..." />
-        <button onclick="sendMessage()">Отправить</button>
+  <!-- Интерактивная карта инициатив -->
+  <section id="initiative-map">
+    <h2>Интерактивная карта инициатив</h2>
+    <div id="map-container">
+      <!-- Фоновое изображение карты с наложением "пинов" -->
+      <div class="map-overlay">
+        <span class="map-pin" data-initiative="Энергия будущего" style="top:20%; left:30%;">&bull;</span>
+        <span class="map-pin" data-initiative="Зеленый город" style="top:50%; left:45%;">&bull;</span>
+        <span class="map-pin" data-initiative="Транспорт будущего" style="top:70%; left:60%;">&bull;</span>
       </div>
-    </section>
+      <!-- Подсказка для пинов -->
+      <div id="map-tooltip" class="hidden"></div>
+    </div>
+  </section>
 
-    <section id="cabinet">
-      <h2>Личный кабинет активиста</h2>
-      <div class="cabinet-grid">
-        <div class="cabinet-card">
-          <h3>Инициативы</h3>
-          <p>3 проекта на рассмотрении</p>
-        </div>
-        <div class="cabinet-card">
-          <h3>Участие</h3>
-          <p>12 встреч, 8 голосований</p>
-        </div>
-        <div class="cabinet-card">
-          <h3>Рейтинг</h3>
-          <p>⭐ 87 баллов влияния</p>
-        </div>
+  <!-- Чат с "Консультантом будущего" -->
+  <section id="chat-section">
+    <h2>Консультант будущего</h2>
+    <div id="chat-container">
+      <div id="chat-messages"></div>
+      <div id="chat-input-area">
+        <input type="text" id="chat-input" placeholder="Задайте ваш вопрос консультанту...">
+        <button id="chat-send">Отправить</button>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="authors">
-      <h2>Авторы проекта</h2>
-      <div class="authors-grid">
-        <div class="author-card">
-          <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Ирина Смирнова" />
-          <h3>Ирина Смирнова</h3>
-          <p>Футуролог, урбанист. Разработала концепцию города будущего и логистики на дрономобилях.</p>
-        </div>
-        <div class="author-card">
-          <img src="https://randomuser.me/api/portraits/men/64.jpg" alt="Николай Журавлёв" />
-          <h3>Николай Журавлёв</h3>
-          <p>AI-архитектор. Отвечает за внедрение Искусственного Интеллекта в систему городского управления.</p>
-        </div>
+  <!-- AJAX-вкладки: Личный кабинет, Инициатива, Новости, Мероприятия -->
+  <section id="tabs-section">
+    <h2>Панель управления</h2>
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="cabinet">Личный кабинет</button>
+      <button class="tab-btn" data-tab="initiative">Инициатива</button>
+      <button class="tab-btn" data-tab="news">Новости</button>
+      <button class="tab-btn" data-tab="events">Мероприятия</button>
+    </div>
+    <div id="tab-content">
+      <!-- Контент для вкладки "Личный кабинет" по умолчанию -->
+      <div class="tab-panel" id="cabinet">
+        Добро пожаловать в ваш личный кабинет. Здесь вы можете видеть ваш прогресс, обновления проектов и персональные достижения.
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
+  <!-- Раздел об авторах -->
+  <section id="authors">
+    <h2>Наши Авторы</h2>
+    <div class="authors-grid">
+      <div class="author-card">
+        <div class="author-img">
+          <img src="https://via.placeholder.com/150" alt="Иван Петров">
+        </div>
+        <h3>Иван Петров</h3>
+        <p>
+          Идеолог проекта. Достижения: разработка уникальных технологий, объединение людей через инновации. 
+          Путь: от мечтателя к строителю будущего.
+        </p>
+      </div>
+      <div class="author-card">
+        <div class="author-img">
+          <img src="https://via.placeholder.com/150" alt="Мария Смирнова">
+        </div>
+        <h3>Мария Смирнова</h3>
+        <p>
+          Творческий директор. Достижения: креативное лидерство, создание арт-экспериментов, 
+          внесение новых идей в общественное пространство. Путь: от художника к визионеру.
+        </p>
+      </div>
+      <div class="author-card">
+        <div class="author-img">
+          <img src="https://via.placeholder.com/150" alt="Дмитрий Соколов">
+        </div>
+        <h3>Дмитрий Соколов</h3>
+        <p>
+          Технический гений. Достижения: разработка передовых AI систем, создание инфраструктуры для цифровой революции. 
+          Путь: от программиста до архитектора новой реальности.
+        </p>
+      </div>
+    </div>
+    <!-- Объявление столицы мира -->
+    <div class="capital-announcement">
+      <h3>Столица мира: <span>Auroria</span></h3>
+      <p>Auroria – символ новой эры, где каждый может внести свой вклад в создание будущего.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer>
     <p>&copy; 2025 Столица Земли. Все права защищены.</p>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
