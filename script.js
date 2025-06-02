@@ -1,47 +1,107 @@
-function scrollToSection(id) {
-  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-}
+document.addEventListener('DOMContentLoaded', function() {
 
-// GPT-консультант будущего (эмуляция)
-function sendMessage() {
-  const input = document.getElementById('chat-input');
-  const chatLog = document.getElementById('chat-log');
+  // Плавный скролл по якорным ссылкам в навигации
+  const navLinks = document.querySelectorAll('nav ul li a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      const targetSection = document.getElementById(targetId);
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
 
-  if (input.value.trim() !== '') {
-    const userMsg = document.createElement('p');
-    userMsg.innerHTML = `<strong>Вы:</strong> ${input.value}`;
-    chatLog.appendChild(userMsg);
+  // Интерактивная карта: обработка наведения на пины
+  const pins = document.querySelectorAll('.map-pin');
+  const tooltip = document.getElementById('map-tooltip');
 
-    const botMsg = document.createElement('p');
-    botMsg.innerHTML = `<strong>Консультант:</strong> ${getFakeGPTResponse(input.value)}`;
-    chatLog.appendChild(botMsg);
+  pins.forEach(pin => {
+    pin.addEventListener('mouseenter', function(e) {
+      const initiative = this.getAttribute('data-initiative');
+      tooltip.textContent = initiative;
+      // Размещаем подсказку рядом с пином
+      tooltip.style.left = (this.offsetLeft + 20) + 'px';
+      tooltip.style.top = (this.offsetTop - 30) + 'px';
+      tooltip.classList.add('visible');
+    });
 
-    input.value = '';
-    chatLog.scrollTop = chatLog.scrollHeight;
+    pin.addEventListener('mouseleave', function() {
+      tooltip.classList.remove('visible');
+    });
+  });
+
+  // AJAX-вкладки: загрузка контента без перезагрузки страницы
+  const tabContent = document.getElementById('tab-content');
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  const contentData = {
+    'cabinet': 'Добро пожаловать в ваш личный кабинет. Здесь вы можете видеть ваш прогресс, обновления проектов и персональные достижения.',
+    'initiative': 'Здесь представлена новая инициатива: «Энергия будущего». Примите участие и внесите свой вклад в создание нового мира.',
+    'news': 'Последние новости: запуск месяца, обновления в проектах и интервью с лидерами мнений.',
+    'events': 'Ближайшие мероприятия: конференция инноваций, воркшоп по будущим технологиям, вечер творческого общения.'
+  };
+
+  tabButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      // Снимаем активный класс со всех кнопок и добавляем текущей
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      this.classList.add('active');
+
+      const tabId = this.getAttribute('data-tab');
+      tabContent.innerHTML = '<p>Загрузка...</p>';
+      // Симуляция AJAX-запроса с задержкой
+      setTimeout(() => {
+        tabContent.innerHTML = '<div class="tab-panel">' + contentData[tabId] + '</div>';
+      }, 500);
+    });
+  });
+
+  // Чат с "Консультантом будущего"
+  const chatInput = document.getElementById('chat-input');
+  const chatSend = document.getElementById('chat-send');
+  const chatMessages = document.getElementById('chat-messages');
+
+  chatSend.addEventListener('click', sendMessage);
+  chatInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      sendMessage();
+    }
+  });
+
+  function sendMessage() {
+    const messageText = chatInput.value.trim();
+    if (messageText === '') return;
+    addMessage('user', messageText);
+    chatInput.value = '';
+    // Симуляция ответа ИИ с задержкой
+    setTimeout(() => {
+      const aiResponse = generateAIResponse(messageText);
+      addMessage('ai', aiResponse);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }, 1000);
   }
-}
 
-function getFakeGPTResponse(text) {
-  const replies = [
-    'Это отличная идея! Мы уже рассматриваем подобные инициативы.',
-    'В Столице Земли мы используем ИИ для моделирования решений.',
-    'Спасибо за вопрос! Мы передадим его в Совет Устойчивого Развития.',
-    'Такая тема обсуждается на форуме городской синергии.',
-    'Вы можете подать инициативу в личном кабинете.'
-  ];
-  return replies[Math.floor(Math.random() * replies.length)];
-}
+  function addMessage(sender, text) {
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('message', sender);
+    const textSpan = document.createElement('span');
+    textSpan.classList.add('text');
+    textSpan.textContent = text;
+    messageDiv.appendChild(textSpan);
+    chatMessages.appendChild(messageDiv);
+  }
 
-// Карта инициатив
-document.addEventListener('DOMContentLoaded', () => {
-  const map = L.map('initiative-map').setView([55.751244, 37.618423], 10);
+  function generateAIResponse(userMessage) {
+    // Простейшая генерация ответа – рандомный выбор из массива вариантов
+    const responses = [
+      'Ваш вопрос очень интересен. Давайте подумаем над этим...',
+      'Спасибо за внимание! Скоро я дам вам подробный ответ.',
+      'Это действительно важный вопрос для будущего. Подумайте об этом в свете новых технологий.',
+      'Я понимаю ваш запрос. Наш проект направлен на объединение усилий для создания лучшего мира.'
+    ];
+    const randomIndex = Math.floor(Math.random() * responses.length);
+    return responses[randomIndex];
+  }
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors'
-  }).addTo(map);
-
-  // Пример добавления маркера
-  L.marker([55.751244, 37.618423]).addTo(map)
-    .bindPopup('Инициатива: Зеленый парк будущего')
-    .openPopup();
 });
