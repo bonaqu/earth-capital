@@ -93,7 +93,7 @@ header {
 #hero {
   position: relative;
   height: 100vh;
-  background: url('https://source.unsplash.com/1920x1080/?futuristic,city') no-repeat center center/cover;
+  background: url('https://images.unsplash.com/photo-1604553421123-5c34044e18ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
 }
 .hero-overlay {
   position: absolute;
@@ -113,12 +113,8 @@ header {
   opacity: 0;
   animation: fadeIn 1s forwards;
 }
-.delay-1 {
-  animation-delay: 0.5s;
-}
-.delay-2 {
-  animation-delay: 1s;
-}
+.delay-1 { animation-delay: 0.5s; }
+.delay-2 { animation-delay: 1s; }
 @keyframes fadeIn {
   to { opacity: 1; }
 }
@@ -137,7 +133,7 @@ header {
   background: linear-gradient(45deg, #005bb5, #009acc);
 }
 
-/* Заголовки секций и описания */
+/* Заголовки секций */
 section h2 {
   text-align: center;
   margin-bottom: 20px;
@@ -170,6 +166,7 @@ section h2 {
   font-size: 2rem;
   cursor: pointer;
   transition: transform 0.3s;
+  z-index: 2;
 }
 .map-pin:hover {
   transform: scale(1.3);
@@ -301,13 +298,8 @@ section h2 {
   transition: background 0.3s;
   font-weight: 500;
 }
-.tab-btn:hover {
-  background: #ccc;
-}
-.tab-btn.active {
-  background: #007BFF;
-  color: #fff;
-}
+.tab-btn:hover { background: #ccc; }
+.tab-btn.active { background: #007BFF; color: #fff; }
 #tab-content {
   background: #fff;
   border-radius: 10px;
@@ -389,13 +381,8 @@ footer {
     flex-direction: column;
     margin-top: 10px;
   }
-  .nav-links li {
-    margin: 10px 0;
-  }
-  .authors-grid {
-    flex-direction: column;
-    align-items: center;
-  }
+  .nav-links li { margin: 10px 0; }
+  .authors-grid { flex-direction: column; align-items: center; }
   .author-card { width: 90%; }
   #chat-messages { height: 200px; }
 }
@@ -430,9 +417,5 @@ body.dark-mode .author-card {
   background: #2a2a2a;
   border-color: #444;
 }
-body.dark-mode .capital-announcement {
-  background: #333;
-}
-body.dark-mode footer {
-  background: #111;
-}
+body.dark-mode .capital-announcement { background: #333; }
+body.dark-mode footer { background: #111; }

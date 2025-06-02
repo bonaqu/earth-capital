@@ -1,11 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Прятание прелоадера после загрузки страницы
+  // Скрытие прелоадера после полной загрузки страницы
   window.onload = function() {
     const preloader = document.getElementById('preloader');
     preloader.style.opacity = "0";
-    setTimeout(() => {
-      preloader.style.display = "none";
-    }, 500);
+    setTimeout(() => { preloader.style.display = "none"; }, 500);
   };
 
   // Плавный скролл по якорным ссылкам
@@ -30,9 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }, observerOptions);
-  animatedSections.forEach(section => {
-    observer.observe(section);
-  });
+  animatedSections.forEach(section => { observer.observe(section); });
 
   // Переключатель темы (Dark Mode)
   const themeToggle = document.getElementById('theme-toggle');
@@ -55,18 +51,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const description = pin.getAttribute('data-description');
       modalTitle.textContent = title;
       modalDescription.textContent = description;
-      // Подгружаем изображение по ключевому слову инициативы
-      modalImage.src = `https://source.unsplash.com/featured/?${encodeURIComponent(title)}`;
+      // Используем фиксированное изображение для модального окна
+      modalImage.src = "https://images.unsplash.com/photo-1581091012184-94a0bb97a5b9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80";
       modal.classList.add('show');
     });
   });
-  
-  modalClose.addEventListener('click', () => {
-    modal.classList.remove('show');
-  });
-  window.addEventListener('click', (e) => {
-    if(e.target == modal) modal.classList.remove('show');
-  });
+  modalClose.addEventListener('click', () => { modal.classList.remove('show'); });
+  window.addEventListener('click', (e) => { if (e.target == modal) modal.classList.remove('show'); });
 
   // Функционал AJAX-вкладок
   const tabButtons = document.querySelectorAll('.tab-btn');
@@ -76,50 +67,51 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p>
                   Здесь отображаются ваши достижения, обновления и новейшие технологии, способствующие развитию единого сообщества.
                 </p>
-                <img src="https://source.unsplash.com/800x600/?technology,workspace" alt="Личный кабинет" class="tab-image">`,
+                <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                     onerror="this.onerror=null; this.src='https://via.placeholder.com/800x600?text=Image+not+found';" 
+                     alt="Личный кабинет" class="tab-image">`,
     'initiative': `<h3>Инновационные Инициативы</h3>
                    <p>
                      Узнайте о последних проектах, где технологии встречаются с креативом для построения будущего.
                    </p>
-                   <img src="https://source.unsplash.com/800x600/?innovation" alt="Инициатива" class="tab-image">`,
+                   <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                        onerror="this.onerror=null; this.src='https://via.placeholder.com/800x600?text=Image+not+found';" 
+                        alt="Инициатива" class="tab-image">`,
     'news': `<h3>Последние Новости</h3>
              <p>
                Будьте в курсе самых актуальных событий, обновлений и новых технологий, меняющих мир.
              </p>
-             <img src="https://source.unsplash.com/800x600/?news,technology" alt="Новости" class="tab-image">`,
+             <img src="https://images.unsplash.com/photo-1515169067865-df77f5bc6b1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                  onerror="this.onerror=null; this.src='https://via.placeholder.com/800x600?text=Image+not+found';" 
+                  alt="Новости" class="tab-image">`,
     'events': `<h3>Будущие Мероприятия</h3>
                <p>
                 Присоединяйтесь к предстоящим конференциям, семинарам и выставкам, посвящённым инновациям.
                </p>
-               <img src="https://source.unsplash.com/800x600/?conference,event" alt="Мероприятия" class="tab-image">`
+               <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                    onerror="this.onerror=null; this.src='https://via.placeholder.com/800x600?text=Image+not+found';" 
+                    alt="Мероприятия" class="tab-image">`
   };
-  
   tabButtons.forEach(button => {
     button.addEventListener('click', function() {
       tabButtons.forEach(btn => btn.classList.remove('active'));
       this.classList.add('active');
       const tabId = this.getAttribute('data-tab');
       tabContent.innerHTML = `<p>Загрузка...</p>`;
-      setTimeout(() => {
-        tabContent.innerHTML = contentData[tabId];
-      }, 500);
+      setTimeout(() => { tabContent.innerHTML = contentData[tabId]; }, 500);
     });
   });
 
-  // Реализация "живого" ИИ-чата с имитацией набора текста
+  // "Живой" ИИ-чат с имитацией набора текста
   const chatInput = document.getElementById('chat-input');
   const chatSend = document.getElementById('chat-send');
   const chatMessages = document.getElementById('chat-messages');
   const aiTyping = document.getElementById('ai-typing');
 
   chatSend.addEventListener('click', handleSendMessage);
-  chatInput.addEventListener('keypress', function(e) {
-    if(e.key === 'Enter'){
-      handleSendMessage();
-    }
-  });
+  chatInput.addEventListener('keypress', function(e) { if(e.key === 'Enter') handleSendMessage(); });
   
-  function handleSendMessage(){
+  function handleSendMessage() {
     const messageText = chatInput.value.trim();
     if(messageText === "") return;
     appendMessage('user', messageText);
@@ -139,24 +131,18 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   function simulateAIResponse(userMsg) {
-    // Показываем индикатор набора
     aiTyping.classList.remove('hidden');
-    // Массив симулированных ответов
     const responses = [
       "Спасибо за ваш вопрос. Мои алгоритмы уже анализируют ситуацию...",
       "Интересное замечание! Позвольте мне собрать для вас информацию...",
       "Ваш запрос касается будущих технологий – давайте посмотрим, что можно предложить!",
-      "Обработка данных... Подготовлю для вас подробный ответ..."
+      "Обработка данных... Подготавливаю подробный ответ..."
     ];
     const responseText = responses[Math.floor(Math.random() * responses.length)];
-    // Запускаем эффект набора текста
-    typeText(responseText, 0, () => {
-      aiTyping.classList.add('hidden');
-    });
+    typeText(responseText, 0, () => { aiTyping.classList.add('hidden'); });
   }
   
   function typeText(text, index, callback) {
-    // Создаем новое сообщение для ИИ
     const aiMsg = document.createElement('div');
     aiMsg.classList.add('message', 'ai');
     const aiTextSpan = document.createElement('span');
@@ -164,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
     aiMsg.appendChild(aiTextSpan);
     chatMessages.appendChild(aiMsg);
     chatMessages.scrollTop = chatMessages.scrollHeight;
-    
+  
     function typeLetter() {
       if(index < text.length) {
         aiTextSpan.textContent += text[index];
@@ -172,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
         chatMessages.scrollTop = chatMessages.scrollHeight;
         setTimeout(typeLetter, 50);
       } else {
-        if(callback) callback();
+        if (callback) callback();
       }
     }
     typeLetter();
