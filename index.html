@@ -23,9 +23,9 @@
       <div class="logo">Столица Земли</div>
       <ul class="nav-links">
         <li><a href="#hero">Главная</a></li>
-        <li><a href="#initiative-map">Инициативы</a></li>
+        <li><a href="#initiative-scheme">Инициативы</a></li>
         <li><a href="#chat-section">Консультант</a></li>
-        <li><a href="#tabs-section">Личный кабинет</a></li>
+        <li><a href="#tabs-section">Панель управления</a></li>
         <li><a href="#authors">Авторы</a></li>
       </ul>
       <button id="theme-toggle" title="Переключить тему">🌙</button>
@@ -40,38 +40,56 @@
       <p class="fade-in delay-1">
         Мы объединяем технологии, искусство и мечты для создания нового мира. Присоединяйтесь к миссии по созданию Auroria – столицы, задающей тренды будущего.
       </p>
-      <a href="#initiative-map" class="cta-btn fade-in delay-2">Узнать больше</a>
+      <a href="#initiative-scheme" class="cta-btn fade-in delay-2">Узнать больше</a>
     </div>
   </section>
 
-  <!-- Секция: Интерактивная карта инициатив -->
-  <section id="initiative-map" class="animated-section">
+  <!-- Секция: Подробная схема инициатив -->
+  <section id="initiative-scheme" class="animated-section">
     <div class="container">
-      <h2>Интерактивная карта инициатив</h2>
+      <h2>Подробная схема инициатив</h2>
       <p class="section-description">
-        Исследуйте проекты, объединяющие людей для построения будущего. Кликните на пины, чтобы узнать подробности.
+        Здесь вы можете ознакомиться с основными инициативами нашего проекта. Каждая инициатива подробно описана, чтобы вы могли понять, как она изменит будущее.
       </p>
-      <div id="map-container">
-        <!-- Статическая картинка карты -->
-        <img src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" 
-             onerror="this.onerror=null; this.src='https://via.placeholder.com/1600x900?text=Map+Image+not+found';" 
-             alt="Карта инициатив" class="map-bg">
-        <div class="map-overlay">
-          <span class="map-pin" data-initiative="Энергия будущего" 
-                data-description="Проект по разработке возобновляемых источников энергии для устойчивого развития города."
-                style="top:25%; left:35%;">💡</span>
-          <span class="map-pin" data-initiative="Зеленый город" 
-                data-description="Инициатива по озеленению мегаполиса, созданию эко-парков и скверов."
-                style="top:50%; left:55%;">🍃</span>
-          <span class="map-pin" data-initiative="Транспорт будущего" 
-                data-description="Разработка инновационных транспортных систем для быстрого и экологичного перемещения."
-                style="top:70%; left:25%;">🚀</span>
+      <div class="initiative-grid">
+        <!-- Инициатива 1 -->
+        <div class="initiative-card">
+          <h3>Энергия будущего</h3>
+          <p>
+            Проект направлен на внедрение возобновляемых источников энергии, создание устойчивых систем распределения и повышение энергоэффективности городов. Мы объединяем новейшие разработки в области солнечной и ветровой энергии.
+          </p>
+          <img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+               onerror="this.onerror=null; this.src='https://via.placeholder.com/800x600?text=Initiative+Image+not+found';" 
+               alt="Энергия будущего">
+          <button class="btn-details" data-initiative="Энергия будущего" data-description="Детальное описание инициативы 'Энергия будущего' с примерами проектов по возобновляемой энергии и инновационными технологическими решениями.">Подробнее</button>
+        </div>
+        <!-- Инициатива 2 -->
+        <div class="initiative-card">
+          <h3>Зеленый город</h3>
+          <p>
+            Инициатива по озеленению городских пространств, созданию эко-парков и скверов, а также внедрению умных систем управления водоснабжением и утилизацией отходов для улучшения городской экологии.
+          </p>
+          <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+               onerror="this.onerror=null; this.src='https://via.placeholder.com/800x600?text=Initiative+Image+not+found';" 
+               alt="Зеленый город">
+          <button class="btn-details" data-initiative="Зеленый город" data-description="Подробное описание инициативы 'Зеленый город' с информацией о озеленении, экопроекте и улучшении качества жизни в мегаполисах.">Подробнее</button>
+        </div>
+        <!-- Инициатива 3 -->
+        <div class="initiative-card">
+          <h3>Транспорт будущего</h3>
+          <p>
+            Разработка инновационных транспортных систем с использованием автономных технологий, экологически чистых решений и умных инфраструктур для повышения мобильности и безопасности в городе.
+          </p>
+          <img src="https://images.unsplash.com/photo-1581091012184-94a0bb97a5b9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+               onerror="this.onerror=null; this.src='https://via.placeholder.com/800x600?text=Initiative+Image+not+found';" 
+               alt="Транспорт будущего">
+          <button class="btn-details" data-initiative="Транспорт будущего" data-description="Детальное описание инициативы 'Транспорт будущего' с примерами использования автономного транспорта и экологичных решений.">Подробнее</button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Модальное окно для показа подробностей инициатив -->
+  <!-- Модальное окно для детальной информации по инициативе -->
   <div id="initiative-modal" class="modal">
     <div class="modal-content">
       <span class="modal-close">&times;</span>
@@ -88,7 +106,7 @@
     <div class="container">
       <h2>Консультант будущего</h2>
       <p class="section-description">
-        Задайте вопрос ИИ-консультанту о технологиях, инновациях и перспективах проекта.
+        Задайте вопрос ИИ-консультанту – узнайте о технологиях, инициативах и перспективах проекта Auroria. Он постарается ответить на основательные вопросы.
       </p>
       <div id="chat-container">
         <div id="chat-messages"></div>
@@ -104,7 +122,7 @@
     </div>
   </section>
 
-  <!-- Секция: AJAX-вкладки (Личный кабинет, Инициатива, Новости, Мероприятия) -->
+  <!-- Секция: Панель управления (Личный кабинет, Инициатива, Новости, Мероприятия) -->
   <section id="tabs-section" class="animated-section">
     <div class="container">
       <h2>Панель управления</h2>
@@ -118,10 +136,24 @@
         <div class="tab-panel" id="cabinet">
           <h3>Добро пожаловать, Искатель будущего!</h3>
           <p>
-            Здесь отображаются ваши достижения, обновления и новейшие технологии. Развивайтесь вместе с нашим сообществом.
+            Это ваш персональный кабинет, где вы можете отслеживать свою активность, узнавать о новых возможностях и получать персонализированные предложения. Здесь – аналитику вашего участия в проекте, отчёты и календарь событий.
           </p>
-          <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
-               onerror="this.onerror=null; this.src='https://via.placeholder.com/800x600?text=Image+not+found';" 
+          <div class="dashboard">
+            <div class="dashboard-card">
+              <h4>Ваш прогресс</h4>
+              <p>80%</p>
+            </div>
+            <div class="dashboard-card">
+              <h4>Новый уровень</h4>
+              <p>Технологии будущего</p>
+            </div>
+            <div class="dashboard-card">
+              <h4>Активность</h4>
+              <p>Участвовали в 3 инициативах</p>
+            </div>
+          </div>
+          <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+               onerror="this.onerror=null; this.src='https://via.placeholder.com/800x600?text=Image+not+found';"
                alt="Личный кабинет" class="tab-image">
         </div>
       </div>
@@ -133,47 +165,49 @@
     <div class="container">
       <h2>Наши Авторы</h2>
       <p class="section-description">
-        Познакомьтесь с командой, воплощающей мечту в будущее. Их опыт, достижения и путь вдохновляют миллионы.
+        Познакомьтесь с командой, воплощающей мечту в будущее. Каждый из них имеет уникальную историю, что привело их к проекту, и вместе они создали Auroria.
       </p>
       <div class="authors-grid">
         <div class="author-card">
           <div class="author-img">
             <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80" 
-                 onerror="this.onerror=null; this.src='https://via.placeholder.com/150?text=Author+Image+not+found';" 
+                 onerror="this.onerror=null; this.src='https://via.placeholder.com/150?text=No+Image';" 
                  alt="Иван Петров">
           </div>
           <h3>Иван Петров</h3>
           <p>
-            Идеолог проекта, объединяющий технологии и креатив. Его видение вдохновляет сотни людей.
+            Иван – идеолог проекта. С юных лет он мечтал преобразить городскую систему, использовать технологии для улучшения качества жизни. Его страсть к инновациям и умение вдохновлять людей стали залогом успеха Auroria.
           </p>
         </div>
         <div class="author-card">
           <div class="author-img">
-            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80"
-                 onerror="this.onerror=null; this.src='https://via.placeholder.com/150?text=Author+Image+not+found';" 
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80" 
+                 onerror="this.onerror=null; this.src='https://via.placeholder.com/150?text=No+Image';" 
                  alt="Мария Смирнова">
           </div>
           <h3>Мария Смирнова</h3>
           <p>
-            Творческий директор, чьи идеи преображают городские пространства в произведения искусства.
+            Мария – креативный директор проекта и художник. Её искреннее видение будущего и стремление к экологичности сделали её лидером в формировании концепции Auroria, где искусство встречается с технологией.
           </p>
         </div>
         <div class="author-card">
           <div class="author-img">
-            <img src="https://images.unsplash.com/photo-1531497865141-4d1972d49f76?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80" 
-                 onerror="this.onerror=null; this.src='https://via.placeholder.com/150?text=Author+Image+not+found';" 
+            <!-- Обновлённый рабочий URL для Дмитрия Соколова -->
+            <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80" 
+                 onerror="this.onerror=null; this.src='https://via.placeholder.com/150?text=No+Image';" 
                  alt="Дмитрий Соколов">
           </div>
           <h3>Дмитрий Соколов</h3>
           <p>
-            Технический гений, разработавший AI‑решения для цифрового будущего. Его инновации прокладывают путь к прогрессу.
+            Дмитрий – технический гений, разработавший ИИ-решения для цифрового будущего. Его глубокие знания в области программирования и страсть к инновациям помогли создать алгоритмы, которые лежат в основе Auroria.
           </p>
         </div>
       </div>
+      <!-- Добавляем историю создания столицы -->
       <div class="capital-announcement">
         <h3>Столица мира: <span>Auroria</span></h3>
         <p>
-          Auroria – символ новой эры, объединяющий людей для создания гармоничного и инновационного будущего.
+          История создания Auroria началась с мечты объединить лучшие умы планеты и объединить усилия в разработке устойчивой городской среды. После долгих переговоров, исследований и экспериментов, команда во главе с Иваном, Марией и Дмитрием сумела доказать, что такой проект возможен. Благодаря поддержке международного сообщества, Auroria получила одобрение стран мира, став символом единства, инноваций и прогресса.
         </p>
       </div>
     </div>
