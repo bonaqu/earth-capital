@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Столица Земли</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header>
+    <h1>СТОЛИЦА ЗЕМЛИ</h1>
+    <p>Глобальный проект будущего</p>
+    <button onclick="scrollToSection('mission')">Узнать больше</button>
+  </header>
+
+  <main>
+    <section id="mission">
+      <h2>Наша миссия</h2>
+      <p>Создать первую столицу планеты — город, где технологии, культура и природа живут в гармонии. Это символ будущего человечества.</p>
+    </section>
+
+    <section id="map">
+      <h2>Карта инициатив</h2>
+      <div id="initiative-map"></div>
+    </section>
+
+    <section id="consultant">
+      <h2>Консультант будущего</h2>
+      <div class="chatbox">
+        <div id="chat-log">
+          <p><strong>Консультант:</strong> Здравствуйте! Я здесь, чтобы рассказать вам о проекте "Столица Земли".</p>
+        </div>
+        <input type="text" id="chat-input" placeholder="Введите вопрос..." />
+        <button onclick="sendMessage()">Отправить</button>
+      </div>
+    </section>
+
+    <section id="cabinet">
+      <h2>Личный кабинет активиста</h2>
+      <div class="cabinet-grid">
+        <div class="cabinet-card">
+          <h3>Инициативы</h3>
+          <p>3 проекта на рассмотрении</p>
+        </div>
+        <div class="cabinet-card">
+          <h3>Участие</h3>
+          <p>12 встреч, 8 голосований</p>
+        </div>
+        <div class="cabinet-card">
+          <h3>Рейтинг</h3>
+          <p>⭐ 87 баллов влияния</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="authors">
+      <h2>Авторы проекта</h2>
+      <div class="authors-grid">
+        <div class="author-card">
+          <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Ирина Смирнова" />
+          <h3>Ирина Смирнова</h3>
+          <p>Футуролог, урбанист. Разработала концепцию города будущего и логистики на дрономобилях.</p>
+        </div>
+        <div class="author-card">
+          <img src="https://randomuser.me/api/portraits/men/64.jpg" alt="Николай Журавлёв" />
+          <h3>Николай Журавлёв</h3>
+          <p>AI-архитектор. Отвечает за внедрение Искусственного Интеллекта в систему городского управления.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Столица Земли. Все права защищены.</p>
+  </footer>
+</body>
+</html>
