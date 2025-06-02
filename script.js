@@ -34,11 +34,14 @@ function getFakeGPTResponse(text) {
 
 // Карта инициатив
 document.addEventListener('DOMContentLoaded', () => {
-  const mapContainer = document.getElementById('initiative-map');
-  const iframe = document.createElement('iframe');
-  iframe.src = 'https://www.google.com/maps/d/embed?mid=1hOgFAK1hD6UvRqAPs4_BkMRDGXJ0p98&ehbc=2E312F';
-  iframe.width = '100%';
-  iframe.height = '100%';
-  iframe.style.border = '0';
-  mapContainer.appendChild(iframe);
+  const map = L.map('initiative-map').setView([55.751244, 37.618423], 10);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  // Пример добавления маркера
+  L.marker([55.751244, 37.618423]).addTo(map)
+    .bindPopup('Инициатива: Зеленый парк будущего')
+    .openPopup();
 });
